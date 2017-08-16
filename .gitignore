@@ -1,0 +1,14 @@
+# Python
+*.pyc
+*.pkl
+*.npy
+
+# Mac
+.DS_Store
+
+# Other
+*.png
+*.jpg
+*.eps
+*.mp4
+*.mat
