@@ -8,8 +8,8 @@ from anno import ImageAnnotation
 
 if __name__ == "__main__":
     fdir = 'examples'
-    fname_anno = '2008_005643.mat'
-    fname_im = '2008_005643.jpg'
+    fname_anno = '2010_000145.mat'
+    fname_im = '2010_000145.jpg'
 
     im = imread(os.path.join(fdir, fname_im))
 
@@ -26,7 +26,10 @@ if __name__ == "__main__":
     ax3.imshow(an.inst_mask, cmap=color_map(N=np.max(an.inst_mask) + 1))
     ax3.set_title('Instance mask')
     ax3.axis('off')
-    ax4.imshow(an.part_mask, cmap=color_map(N=np.max(an.part_mask) + 1))
+    if np.max(an.part_mask) == 0:
+        ax4.imshow(an.part_mask, cmap='gray')
+    else:
+        ax4.imshow(an.part_mask, cmap=color_map(N=np.max(an.part_mask) + 1))
     ax4.set_title('Part mask')
     ax4.axis('off')
     plt.show()
