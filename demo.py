@@ -11,13 +11,12 @@ if __name__ == "__main__":
     fname_anno = '2010_000145.mat'
     fname_im = '2010_000145.jpg'
 
-    im = imread(os.path.join(fdir, fname_im))
-
-    an = ImageAnnotation(os.path.join(fdir, fname_anno))
-    an.mat2map(im.shape[:-1])
+    an = ImageAnnotation(
+        os.path.join(fdir, fname_im),
+        os.path.join(fdir, fname_anno))
 
     f, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2)
-    ax1.imshow(im)
+    ax1.imshow(an.im)
     ax1.set_title('Image')
     ax1.axis('off')
     ax2.imshow(an.cls_mask, cmap=color_map(N=np.max(an.cls_mask) + 1))

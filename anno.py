@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.io import loadmat
+from skimage.io import imread
 from skimage.measure import regionprops
 from part2ind import get_pimap
 
@@ -8,17 +9,27 @@ PIMAP = get_pimap()
 
 
 class ImageAnnotation(object):
-    def __init__(self, fname):
-        data = loadmat(fname)['anno'][0, 0]
-        self.imname = data['imname'][0]
-        self.fname = fname
+    def __init__(self, impath, annopath):
+        # read image
+        self.im = imread(impath)
+        self.impath = impath
+        self.imsize = self.im.shape
 
+        # read annotations
+        data = loadmat(annopath)['anno'][0, 0]
+        self.imname = data['imname'][0]
+        self.annopath = annopath
+
+        # parse objects and parts
         self.n_objects = data['objects'].shape[1]
         self.objects = []
         for obj in data['objects'][0, :]:
             self.objects.append(PascalObject(obj))
 
-    def mat2map(self, shape):
+        # create masks for objects and parts
+        self._mat2map()
+
+    def _mat2map(self):
         ''' Create masks from the annotations
         Python implementation based on
         http://www.stat.ucla.edu/~xianjie.chen/pascal_part_dataset/trainval.tar.gz
@@ -27,6 +38,7 @@ class ImageAnnotation(object):
         i.e., the class maks, instance maks and part mask). pimap defines a
         mapping between part name and index (See part2ind.py).
         '''
+        shape = self.imsize[:-1]  # first two dimensions, ignore color channel
         self.cls_mask = np.zeros(shape, dtype=np.uint8)
         self.inst_mask = np.zeros(shape, dtype=np.uint8)
         self.part_mask = np.zeros(shape, dtype=np.uint8)
