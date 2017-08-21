@@ -1,11 +1,14 @@
 # pascal-parts-py
 
-Helpers in python to manipulate the annototions of the [Pascal-Part](http://www.stat.ucla.edu/~xianjie.chen/pascal_part_dataset/pascal_part.html) dataset.
+Helpers in python to manipulate the annotations of the [Pascal-Part](http://www.stat.ucla.edu/~xianjie.chen/pascal_part_dataset/pascal_part.html) dataset.
 
 ## Usage
 
 ```python
-an = ImageAnnotation(annotation_matrix)
+an = ImageAnnotation(jpg_image, annotation_matrix)
+
+an.image  # image
+
 an.objects  # list of objects in the image
 an.objects[0].parts  # list of parts that belong to the first object
 
