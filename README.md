@@ -5,9 +5,9 @@ Helpers in python to manipulate the annotations of the [Pascal-Part](http://www.
 ## Usage
 
 ```python
-an = ImageAnnotation(jpg_image, annotation_matrix)
+an = ImageAnnotation(image_path, annotation_matrix_path)
 
-an.image  # image
+an.im  # image
 
 an.objects  # list of objects in the image
 an.objects[0].parts  # list of parts that belong to the first object
