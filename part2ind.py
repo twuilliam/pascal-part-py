@@ -23,7 +23,7 @@ def get_class_names():
                8: 'cat',
                9: 'chair',
                10: 'cow',
-               11: 'diningtable',
+               11: 'table',
                12: 'dog',
                13: 'horse',
                14: 'motorbike',
@@ -153,7 +153,7 @@ def get_pimap():
     pimap[10]['rblleg']     = 18               # right back lower leg
     pimap[10]['tail']       = 19
 
-    # [diningtable]
+    # [table]
     # only has silhouette mask
 
     # [dog]
