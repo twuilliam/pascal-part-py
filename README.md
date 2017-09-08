@@ -1,4 +1,4 @@
-# pascal-parts-py
+# pascal-part-py
 
 Helpers in python to manipulate the annotations of the [Pascal-Part](http://www.stat.ucla.edu/~xianjie.chen/pascal_part_dataset/pascal_part.html) dataset.
 
